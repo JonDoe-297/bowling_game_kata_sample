@@ -12,12 +12,17 @@ namespace BowlingGameKata
         public static int GetScore(List<int> pins)
         {
             int score = 0;
-            for (int i = 0; i < pins.Count;i++ )
+            for (int i = 0; i < pins.Count;i=i+2 )
             {
-                if (pins[i] == 10)
-                    score = pins[i] + pins[i + 2] + pins[i + 3];
-                else
-                    score += pins[i];
+                for (int j = 1; j < pins.Count;j=j+2 )
+                { 
+                    if (pins[i] + pins[j] == 10)
+                        score = score+pins[i]+pins[i +1] + pins[i +1];
+                    if (pins[i] == 10)
+                        score = score+pins[i] + pins[i + 1] + pins[j+1];
+                    else
+                        score = score+pins[i]+pins[j];
+                }
             }
 
             return score;
